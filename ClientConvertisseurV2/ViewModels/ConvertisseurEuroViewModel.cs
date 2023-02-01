@@ -29,7 +29,7 @@ namespace ClientConvertisseurV2.ViewModels
         public string TxtBoxMontantEuro
         {
             get => txtBoxMontantEuro;
-            private set => SetProperty(ref txtBoxMontantEuro, value);
+            set => SetProperty(ref txtBoxMontantEuro, value);
         }
 
         private string txtBoxMontantdevise;
@@ -37,7 +37,7 @@ namespace ClientConvertisseurV2.ViewModels
         public string TxtBoxMontantdevise
         {
             get => txtBoxMontantdevise;
-            private set => SetProperty(ref txtBoxMontantdevise, value);
+            set => SetProperty(ref txtBoxMontantdevise, value);
         }
 
         private int laCombo;
@@ -45,9 +45,9 @@ namespace ClientConvertisseurV2.ViewModels
         public int LaCombo
         {
             get => laCombo;
-            private set => SetProperty(ref laCombo, value);
+            set => SetProperty(ref laCombo, value);
         }
-        
+
 
 
         public ConvertisseurEuroViewModel()
@@ -71,14 +71,33 @@ namespace ClientConvertisseurV2.ViewModels
         private void ActionSetConversion()
         {
             //Code du calcul à écrire
-
-            foreach (Devise laDevise in devises)
+            try 
             {
-                if (laDevise.Id == LaCombo + 1)
+                foreach (Devise laDevise in devises)
                 {
-                    TxtBoxMontantdevise = (Convert.ToDouble(TxtBoxMontantEuro) * Convert.ToDouble(laDevise.Taux)).ToString();
+                    if (laDevise.Id == LaCombo + 1)
+                    {
+                        TxtBoxMontantdevise = (Convert.ToDouble(TxtBoxMontantEuro) * Convert.ToDouble(laDevise.Taux)).ToString();
+                    }
                 }
             }
+            catch (Exception)
+            {
+                MessageAsync("Impossible de calculer le montant !", "Erreur");
+            }
+        }
+
+        private async void MessageAsync(string message, string title)
+        {
+            ContentDialog contentDialog = new ContentDialog()
+            {
+                Title = title,
+                Content = message,
+                CloseButtonText = "Ok"
+            };
+
+            contentDialog.XamlRoot = App.MainRoot.XamlRoot;
+            await contentDialog.ShowAsync();
         }
     }
 }

@@ -39,6 +39,8 @@ namespace ClientConvertisseurV2
             this.InitializeComponent();
         }
 
+        public static FrameworkElement MainRoot { get; private set; }
+
         /// <summary>
         /// Invoked when the application is launched.
         /// </summary>
@@ -51,10 +53,13 @@ namespace ClientConvertisseurV2
 
             this.m_window.Content = rootFrame;
 
+            MainRoot = m_window.Content as FrameworkElement;
+
             m_window.Activate();
 
             rootFrame.Navigate(typeof(ConvertisseurEuroPage));
         }
+
 
         private Window m_window;
     }
