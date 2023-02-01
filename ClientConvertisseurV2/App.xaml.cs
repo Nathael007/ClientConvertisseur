@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
-using ClientConvertisseurV1.Views;
+using ClientConvertisseurV2.Views;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -23,7 +23,7 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace ClientConvertisseurV1
+namespace ClientConvertisseurV2
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -45,19 +45,17 @@ namespace ClientConvertisseurV1
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window= new Window();
+            m_window = new Window();
 
             Frame rootFrame = new Frame();
 
             this.m_window.Content = rootFrame;
-            
+
             m_window.Activate();
 
             rootFrame.Navigate(typeof(ConvertisseurEuroPage));
         }
 
         private Window m_window;
-
-        public static object MainRoot { get; internal set; }
     }
 }
