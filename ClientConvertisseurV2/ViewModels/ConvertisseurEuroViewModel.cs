@@ -58,7 +58,7 @@ namespace ClientConvertisseurV2.ViewModels
             BtnSetConversion = new RelayCommand(ActionSetConversion);
         }
 
-        private async void GetDataOnLoadAsync()
+        public async void GetDataOnLoadAsync()
         {
             WSService service = new WSService("https://localhost:44359/api/");
             List<Devise> result = await service.GetDevisesAsync("devises");
@@ -68,12 +68,12 @@ namespace ClientConvertisseurV2.ViewModels
         public IRelayCommand BtnSetConversion { get; }
 
 
-        private void ActionSetConversion()
+        public void ActionSetConversion()
         {
             //Code du calcul à écrire
             try 
             {
-                foreach (Devise laDevise in devises)
+                foreach (Devise laDevise in Devises)
                 {
                     if (laDevise.Id == LaCombo + 1)
                     {
